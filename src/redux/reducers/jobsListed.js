@@ -5,13 +5,18 @@ const jobReducer = (state = initialState.jobsListed, action) => {
         case 'FETCH_JOBS':
             return {
                 ...state,
-                jobsListed: action.payload,
+                jobs: action.payload,
             }
 
         case 'FETCH_JOBS_ERROR':
             return {
                 ...state,
                 error: action.payload,
+            }
+        case 'FETCH_JOBS_LOADING':
+            return {
+                ...state,
+                isLoading: action.payload,
             }
 
         default:

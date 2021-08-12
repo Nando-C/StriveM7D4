@@ -21,29 +21,29 @@ class Results extends Component {
         isLoading: true
     }
 
-    fecthJobs = async (query = "&limit=10") => {
-        try {
-            let response = await fetch(
-                `https://remotive.io/api/remote-jobs?search=${query}`
-            )
-            if (response.ok) {
-                let results = await response.json()
-                let resultJobs = results.jobs
-                console.log(resultJobs);
-                this.setState({ 
-                    jobs: resultJobs, 
-                    isLoading: false
-                })
-            } else {
-                console.log('Something went wrong');
-            }
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    // fecthJobs = async (query = "&limit=10") => {
+    //     try {
+    //         let response = await fetch(
+    //             `https://remotive.io/api/remote-jobs?search=${query}`
+    //         )
+    //         if (response.ok) {
+    //             let results = await response.json()
+    //             let resultJobs = results.jobs
+    //             console.log(resultJobs);
+    //             this.setState({ 
+    //                 jobs: resultJobs, 
+    //                 isLoading: false
+    //             })
+    //         } else {
+    //             console.log('Something went wrong');
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     componentDidMount = () => {
-       this.fecthJobs()
+    //    this.fecthJobs()
        this.props.fetchingJobs()
     }
 
@@ -63,13 +63,13 @@ class Results extends Component {
         return (
             <>
                 {/* <Row> */}
-                    <SearchBar query={this.state.query} inputChange={this.inputChange} fecthJobs={this.fecthJobs} />
+                    <SearchBar query={this.state.query} inputChange={this.inputChange} fecthJobs={this.props.fetchingJobs} />
                 {/* </Row> */}
                 <Row>
                     <Col md={4} >
-                        {this.state.isLoading
+                        {this.props.jobsListed.isLoading
                             ? <> Loading... </>
-                            : <JobList jobs={this.state.jobs} jobSelected={this.state.jobSelected} changeJob={this.changeJob} />
+                            : <JobList jobs={this.props.jobsListed.jobs} jobSelected={this.state.jobSelected} changeJob={this.changeJob} />
                         }
                     </Col>
                     <Col md={8} >
