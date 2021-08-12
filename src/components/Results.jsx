@@ -4,6 +4,15 @@ import { Col, Row } from 'react-bootstrap'
 import SearchBar from "./SearchBar"
 import JobDetail from "./JobDetail"
 
+import { connect } from 'react-redux'
+import { fetchJobsAction } from "../redux/actions"
+
+const mapToStateProps = (state) => state
+
+const mapToDispatchToProps = (dispatch) => ({
+    fetchingJobs: () => dispatch(fetchJobsAction())
+})
+
 class Results extends Component {
     state = {
         jobs: [],
@@ -35,6 +44,7 @@ class Results extends Component {
 
     componentDidMount = () => {
        this.fecthJobs()
+       this.props.fetchingJobs()
     }
 
     inputChange = (e) => {
@@ -71,4 +81,4 @@ class Results extends Component {
     }
 }
  
-export default Results;
+export default connect(mapToStateProps, mapToDispatchToProps)(Results);
