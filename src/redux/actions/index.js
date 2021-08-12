@@ -8,11 +8,11 @@ export const removeFromFavouritesAction = (index) => ({
     payload: index,
 })
 
-export const fetchJobsAction = (query = "&limit=10") => {
+export const fetchJobsAction = (query = "search=&limit=10") => {
     return async (dispatch, getState) => {
         try {
             let response = await fetch(
-                `https://remotive.io/api/remote-jobs?search=${query}`
+                `https://remotive.io/api/remote-jobs?${query}`
             )
             if (response.ok) {
                 let results = await response.json()
