@@ -11,6 +11,7 @@ export const initialState = {
     },
     jobsListed: {
         jobs: [],
+        isLoading: true,
         error: false,
     },
 }

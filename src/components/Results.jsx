@@ -10,7 +10,7 @@ import { fetchJobsAction } from "../redux/actions"
 const mapToStateProps = (state) => state
 
 const mapToDispatchToProps = (dispatch) => ({
-    fetchingJobs: () => dispatch(fetchJobsAction())
+    fetchingJobs: (q) => dispatch(fetchJobsAction(q))
 })
 
 class Results extends Component {
